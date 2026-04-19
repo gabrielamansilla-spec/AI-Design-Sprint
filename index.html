@@ -342,6 +342,7 @@ body.editing [contenteditable="true"]:focus {
   margin-top: 24px;
 }
 
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -632,226 +633,212 @@ body.editing [contenteditable="true"]:focus {
 </div>
 
 <div style="scroll-margin-top: 110px" id="proceso-completo">
-<div class="ss" id="proceso-completo">
+<div class="ss" id="proceso-completo-inner">
   <div class="sh">
-    <div class="sl"><div class="sn snb">03b</div><div>
+    <div class="sl"><div class="sn snb">03</div><div>
       <div class="st">Flujo completo — 16 actividades</div>
-      <div class="sd">4 fases · descripción · pain principal · actores · estado Celonis</div>
+      <div class="sd">4 fases · click en cada actividad para ver y editar el detalle</div>
     </div></div>
   </div>
-  <div style="display:flex;flex-direction:column;gap:4px">
 
-    <div style="background:#7F77DD18;border-left:3px solid #7F77DD;border-radius:6px;padding:8px 14px;margin-bottom:4px">
-      <div style="font-size:11px;font-weight:700;color:#7F77DD;text-transform:uppercase;letter-spacing:.06em">Fase 1 — Colecta de info y creación de perfil</div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
-      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#7F77DD;margin-bottom:4px">A1 · Forms Meliclick</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Completar formulario Meliclick</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">El candidato ingresa sus datos en uno de los 17 forms según su locación. Los 17 forms se consolidan en un Google Sheet central.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Cruce manual entre 17 formularios y planillas. Sin base de datos centralizada.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 Candidato · TA · ABM</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×17 forms</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#f5f4f0;color:var(--mu);border:1px solid var(--bd)">Sin Celonis</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid #1D9E75;border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#7F77DD;margin-bottom:4px">A2 · ABM → Único</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Creación masiva de perfiles en Único</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">ABM convierte los 17 forms a Excel central (macro) y realiza carga masiva de perfiles en Único y SSFF.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Fallas constantes en carga masiva. Lotes de 500. Archivado manual en mesa de análisis.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 ABM · Macro Excel</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×17 perfiles</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#e1f5ee;color:#0F6E56;border:1px solid #5dcaa5">✓ Celonis</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#7F77DD;margin-bottom:4px">A3 · Digibee</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Procesamiento email y ejecución API</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">Digibee procesa el adjunto del email y ejecuta la API de Único para crear posiciones.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Sin procesamiento simultáneo. Lotes de 1000 por archivo. Reportes insuficientes de errores.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 Digibee (automatizado)</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×1</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#f5f4f0;color:var(--mu);border:1px solid var(--bd)">Sin Celonis</span>
-        </div>
-      </div>
-    </div>
+<style>
+.sw-root{font-family:inherit;padding:4px 0}
+.sw-board{display:flex;flex-direction:column;gap:3px;overflow-x:auto;padding-bottom:2px}
+.sw-lane{display:flex;align-items:stretch;min-width:580px}
+.sw-hd{width:108px;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;padding:8px 10px;border-radius:8px 0 0 8px}
+.sw-hd-id{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:2px}
+.sw-hd-nm{font-size:11px;font-weight:500;line-height:1.3}
+.sw-body{flex:1;display:flex;align-items:center;gap:0;padding:8px 10px;border-radius:0 8px 8px 0;position:relative;min-height:68px}
+.sw-line{position:absolute;left:10px;right:10px;top:50%;height:1.5px;z-index:0;pointer-events:none}
+.sw-col{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
+.sw-card{width:100%;max-width:80px;min-height:50px;border-radius:8px;border:1.5px solid;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5px 4px;text-align:center;transition:transform .12s,border-color .15s;background:var(--color-background-primary)}
+.sw-card:hover{transform:translateY(-2px)}
+.sw-card.sw-sel{transform:translateY(-3px)}
+.sw-cid{font-size:9px;font-weight:500;letter-spacing:.06em;margin-bottom:2px}
+.sw-cnm{font-size:10px;font-weight:500;line-height:1.25}
+.sw-dot{width:6px;height:6px;border-radius:50%;margin-top:3px}
+.sw-det{border-radius:10px;border:1.5px solid var(--color-border-tertiary);background:var(--color-background-primary);overflow:hidden;margin-top:10px}
+.sw-det-top{display:flex;align-items:stretch}
+.sw-det-acc{width:4px;flex-shrink:0}
+.sw-det-body{flex:1;padding:14px 16px}
+.sw-det-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.sw-det-badge{font-size:10px;font-weight:500;padding:3px 9px;border-radius:99px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.sw-det-id{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:2px}
+.sw-det-title{font-size:14px;font-weight:500;color:var(--color-text-primary);line-height:1.3}
+.sw-det-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:10px}
+.sw-pain-wrap{margin-bottom:10px}
+.sw-pain-label{font-size:10px;font-weight:500;color:#854F0B;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.sw-pain-edit{font-size:11px;line-height:1.5;padding:8px 10px;border-radius:0 6px 6px 0;border-left:2.5px solid #BA7517;background:#FAEEDA;color:#412402;min-height:36px;word-break:break-word;outline:none;transition:background .15s}
+.sw-pain-edit[contenteditable="true"]{background:#FFF8EC;box-shadow:0 0 0 1.5px #EF9F27}
+.sw-pain-edit[contenteditable="true"]:focus{background:#FFFBF5}
+.sw-edit-hint{font-size:10px;color:#BA7517;margin-top:3px;opacity:0;transition:opacity .2s}
+.sw-pain-edit[contenteditable="true"] ~ .sw-edit-hint{opacity:1}
+.sw-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--color-text-secondary)}
+.sw-sys-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.sw-sys{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
+.sw-cel-ok{color:#0F6E56}
+.sw-leg{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:11px;color:var(--color-text-secondary)}
+.sw-leg-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:3px;vertical-align:middle}
+</style>
 
-    <div style="background:#BA751718;border-left:3px solid #BA7517;border-radius:6px;padding:8px 14px;margin-bottom:4px">
-      <div style="font-size:11px;font-weight:700;color:#BA7517;text-transform:uppercase;letter-spacing:.06em">Fase 2 — Subida de docs y validación para ingreso</div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
-      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#BA7517;margin-bottom:4px">A4 · Candidato → Único</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Prueba de vida y documentación</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">El candidato sube +9 documentos desde su celular o totem en el punto de admisión.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Alta tasa de abandono y errores. Seguimiento manual uno a uno por WhatsApp no empresarial.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 Candidato · Mesa análisis Único</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×9 docs</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#f5f4f0;color:var(--mu);border:1px solid var(--bd)">Sin Celonis</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#BA7517;margin-bottom:4px">A5 · Único → Receita Federal</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Check automático Receita Federal</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">Único realiza un check automático del CPF del candidato ante la Receita Federal.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Errores de nombre en Receita Federal requieren seguimiento manual ante el organismo. Sin timestamp en Celonis.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 Único (automatizado)</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×1</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#f5f4f0;color:var(--mu);border:1px solid var(--bd)">Sin Celonis</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#BA7517;margin-bottom:4px">A6 · Mesa análisis</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Follow-up candidatos pendientes</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">La mesa hace follow-up de candidatos que no subieron documentación y marca Archivado en menos de 30 min.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Seguimiento manual uno a uno vía WhatsApp. 7 aprendices con jornada reducida y sin equipamiento completo.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 Mesa análisis Único · ABM · TA</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×1</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#f5f4f0;color:var(--mu);border:1px solid var(--bd)">Sin Celonis</span>
-        </div>
-      </div>
-    </div>
-
-    <div style="background:#0F6E5618;border-left:3px solid #0F6E56;border-radius:6px;padding:8px 14px;margin-bottom:4px">
-      <div style="font-size:11px;font-weight:700;color:#0F6E56;text-transform:uppercase;letter-spacing:.06em">Fase 3 — Alta del candidato y ajuste de perfil</div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
-      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#0F6E56;margin-bottom:4px">A6b · TA → GSheet (Shipping)</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Completar Google Sheet admisión</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">El TA completa el GSheet con los 34 campos del candidato según el template oficial. El link se adjunta al ticket Jira.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Proceso 100% manual campo por campo. Sin validación automática. Errores se detectan recién cuando ABM procesa.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 TA · Bot People</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×34 campos</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#f5f4f0;color:var(--mu);border:1px solid var(--bd)">Sin Celonis</span> <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#eeedfe;color:#534ab7;border:1px solid #afa9ec">★ Caso</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid #1D9E75;border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#0F6E56;margin-bottom:4px">A7 · Bot ABM → Jira</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Apertura ticket Jira para ALTA</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">El bot de ABM le hace preguntas al TA y genera el ticket en Jira. SLA: 48hs. Para Shipping incluye link al GSheet.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Datos del candidato no en campos estructurados de Jira. isulog manual. PENDING sin notificación automática.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 TA · Bot ABM · ABM</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×1 · SLA 48hs</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#e1f5ee;color:#0F6E56;border:1px solid #5dcaa5">✓ Celonis</span> <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#eeedfe;color:#534ab7;border:1px solid #afa9ec">★ Caso</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#0F6E56;margin-bottom:4px">A8 · ABM → Único</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Ajuste masivo de perfiles en Único</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">ABM realiza ajuste masivo de perfiles en Único post-ticket. Incluye manejo de casos de rehire.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Proceso manual con macros. Rehire requiere modificar CPF manualmente. Sin timestamp en Celonis.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 ABM · Macro Excel</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×1</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#f5f4f0;color:var(--mu);border:1px solid var(--bd)">Sin Celonis</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid #1D9E75;border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#0F6E56;margin-bottom:4px">A9 · Digibee → Único</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Procesamiento email y ejecución API (ajuste)</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">Digibee ejecuta la API de ajuste de perfiles en Único.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Mismo pain que A3: sin procesamiento simultáneo, lotes reducidos.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 Digibee (automatizado)</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×1</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#e1f5ee;color:#0F6E56;border:1px solid #5dcaa5">✓ Celonis</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid #1D9E75;border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#0F6E56;margin-bottom:4px">A10 · ABM → SSFF</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Creación de perfiles en SSFF</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">ABM importa 14 templates CSV en SSFF en orden. Cada template cubre un aspecto del perfil del empleado.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Proceso manual con macros. 14 templates: cualquier error detiene el procesamiento. Comunicación a stakeholders manual.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 ABM · Macro Excel · SSFF</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×14 templates</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#e1f5ee;color:#0F6E56;border:1px solid #5dcaa5">✓ Celonis</span> <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#eeedfe;color:#534ab7;border:1px solid #afa9ec">★ Caso</span>
-        </div>
-      </div>
-    </div>
-
-    <div style="background:#993C1D18;border-left:3px solid #993C1D;border-radius:6px;padding:8px 14px;margin-bottom:4px">
-      <div style="font-size:11px;font-weight:700;color:#993C1D;text-transform:uppercase;letter-spacing:.06em">Fase 4 — Firma de contrato y alta en entidades</div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
-      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#993C1D;margin-bottom:4px">A11 · Candidato → Único</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Firma de contrato y documentos</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">El candidato firma el contrato y 11 formularios en Único. Seguimiento presencial en D1/D2 post-admisión.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Seguimiento presencial intensivo. Sin automatización de recordatorios. Fallas de plataforma impactan fecha de ingreso.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 Candidato · A&P · ABM</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×11 formularios</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#f5f4f0;color:var(--mu);border:1px solid var(--bd)">Sin Celonis</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid #1D9E75;border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#993C1D;margin-bottom:4px">A12 · Único → SAP</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Envío de forms para firma</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">Único envía los formularios firmados vía API a SAP. Este evento activa el proceso de alta definitiva.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Errores de integración Único→SAP generan retrabajos. Sin alerta automática ante firma pendiente.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 Único (automatizado) · SAP</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×1</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#e1f5ee;color:#0F6E56;border:1px solid #5dcaa5">✓ Celonis</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid #1D9E75;border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#993C1D;margin-bottom:4px">A13 · SAP / Strada</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Alta en SAP y sistemas downstream</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">Alta definitiva en SAP. Activa eSocial, Santander, Ahgora y sistemas de beneficios del empleado.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Check de réplicas manual en reports. Comunicación a stakeholders por email. Short deadline Rep1.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 ABM · SAP · Strada</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×1</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#e1f5ee;color:#0F6E56;border:1px solid #5dcaa5">✓ Celonis</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#993C1D;margin-bottom:4px">A14 · SAP → Santander</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Pedido cuenta bancaria Santander</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">SAP envía la solicitud de apertura de cuenta bancaria a Santander para el nuevo empleado.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Dependencia de comunicación manual con Santander. Sin integración automática.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 ABM · SAP · Santander</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×1</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#f5f4f0;color:var(--mu);border:1px solid var(--bd)">Sin Celonis</span>
-        </div>
-      </div>
-      <div style="background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#993C1D;margin-bottom:4px">A15 · SAP → eSocial</div>
-        <div style="font-size:13px;font-weight:600;margin-bottom:6px">Alta eSocial</div>
-        <div style="font-size:11px;color:#555;line-height:1.5;margin-bottom:6px">Alta del empleado en eSocial desde SAP. Obligación regulatoria brasileña.</div>
-        <div style="font-size:11px;color:var(--o);background:#FFF5EE;border-left:2px solid var(--o);padding:4px 8px;border-radius:0 4px 4px 0;margin-bottom:6px;line-height:1.4">⚠️ Chequeo manual en reports de eSocial. Errores requieren corrección y reenvío manual.</div>
-        <div style="font-size:10px;color:var(--mu);margin-bottom:6px">👤 ABM · SAP · eSocial</div>
-        <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:var(--gr);color:var(--tx)">×1</span>
-          <span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#f5f4f0;color:var(--mu);border:1px solid var(--bd)">Sin Celonis</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Leyenda -->
-    <div style="display:flex;gap:16px;padding:10px 14px;background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);flex-wrap:wrap;margin-top:8px">
-      <div style="font-size:11px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;width:100%">Leyenda</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1D9E75"></span>Conectado en Celonis</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#CCC"></span>Sin conexión Celonis</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555"><span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#FFF5EE;color:var(--o);border:1px solid #FDBA74">⚠️</span>Pain principal</div>
-      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555"><span style="font-size:10px;padding:2px 7px;border-radius:99px;background:#eeedfe;color:#534ab7;border:1px solid #afa9ec">★ Caso</span>Entra en potencial caso de uso</div>
-    </div>
+<div class="sw-root">
+  <div class="sw-board" id="sw-board"></div>
+  <div id="sw-detail"></div>
+  <div class="sw-leg">
+    <span><span class="sw-leg-dot" style="background:#1D9E75"></span>Celonis conectado</span>
+    <span><span class="sw-leg-dot" style="background:var(--color-border-secondary)"></span>Sin Celonis</span>
+    <span>Click en tarjeta para ver detalle · Pain editable directo en el panel</span>
   </div>
 </div>
-</div>
+
+<script>
+(function(){
+var PH=[
+  {id:'P1',name:'Colecta y perfil',    c:'#534AB7',bg:'#EEEDFE',line:'#AFA9EC'},
+  {id:'P2',name:'Docs y validación',   c:'#854F0B',bg:'#FAEEDA',line:'#EF9F27'},
+  {id:'P3',name:'Alta y ajuste',       c:'#0F6E56',bg:'#E1F5EE',line:'#5DCAA5'},
+  {id:'P4',name:'Firma y downstream',  c:'#712B13',bg:'#FAECE7',line:'#F0997B'},
+];
+var A=[
+  {id:'A1', ph:0,n:'Form\nMeliclick', full:'Completar formulario Meliclick',src:'Candidato · TA · ABM',sys:['Meliclick','GSheet'],cel:false,qty:'\xd717 forms',desc:'El candidato completa sus datos en uno de los 17 formularios seg\xfan su locaci\xf3n. ABM consolida todo en un GSheet central.',pain:'Cruce manual entre 17 formularios. Sin base de datos centralizada.'},
+  {id:'A2', ph:0,n:'Perfiles\n\xdanico', full:'Creaci\xf3n masiva de perfiles en \xdanico',src:'ABM · Macro Excel',sys:['\xdanico','SSFF'],cel:true, qty:'\xd717 perfiles',desc:'ABM convierte los formularios a Excel (macro) y realiza carga masiva de perfiles en \xdanico y SSFF.',pain:'Fallas constantes en carga masiva. Lotes de 500. Archivado manual en mesa de an\xe1lisis.'},
+  {id:'A3', ph:0,n:'API\nDigibee',     full:'Procesamiento email y API',src:'Digibee (auto)',sys:['Digibee','\xdanico'],cel:false,qty:'\xd71',desc:'Digibee procesa el adjunto del email y ejecuta la API de \xdanico para crear posiciones.',pain:'Sin procesamiento simult\xe1neo. Lotes de 1000. Reportes insuficientes de errores.'},
+  {id:'A4', ph:1,n:'Prueba\nde vida',  full:'Prueba de vida y documentaci\xf3n',src:'Candidato · Mesa an\xe1lisis',sys:['\xdanico'],cel:false,qty:'\xd79 docs',desc:'El candidato sube +9 documentos desde su celular o totem en el punto de admisi\xf3n.',pain:'Alta tasa de abandono. Seguimiento manual uno a uno por WhatsApp no empresarial.'},
+  {id:'A5', ph:1,n:'Receita\nFederal', full:'Check autom\xe1tico Receita Federal',src:'\xdanico (auto)',sys:['\xdanico','Receita Fed.'],cel:false,qty:'\xd71',desc:'\xdanico realiza un check autom\xe1tico del CPF del candidato ante la Receita Federal.',pain:'Errores de nombre requieren seguimiento manual ante el organismo. Sin timestamp en Celonis.'},
+  {id:'A6', ph:1,n:'Follow-up\npendientes',full:'Follow-up candidatos pendientes',src:'Mesa an\xe1lisis · ABM · TA',sys:['\xdanico'],cel:false,qty:'\xd71',desc:'La mesa hace follow-up de candidatos que no subieron docs y marca Archivado en menos de 30 min.',pain:'Seguimiento manual por WhatsApp. 7 aprendices con jornada reducida.'},
+  {id:'A6b',ph:2,n:'GSheet\nShipping', full:'Completar GSheet admisi\xf3n',src:'TA · Bot People',sys:['GSheet','Jira'],cel:false,qty:'\xd734 campos',desc:'El TA completa el GSheet con los 34 campos del candidato seg\xfan template oficial.',pain:'Proceso 100% manual campo por campo. Sin validaci\xf3n autom\xe1tica.'},
+  {id:'A7', ph:2,n:'Ticket\nJira',     full:'Apertura ticket Jira para ALTA',src:'TA · Bot ABM · ABM',sys:['Jira','SSFF'],cel:true, qty:'SLA 48hs',desc:'El bot de ABM hace preguntas al TA y genera el ticket en Jira autom\xe1ticamente.',pain:'Datos del candidato no en campos estructurados. isulog manual. PENDING sin notificaci\xf3n.'},
+  {id:'A8', ph:2,n:'Ajuste\n\xdanico',    full:'Ajuste masivo de perfiles en \xdanico',src:'ABM · Macro Excel',sys:['\xdanico'],cel:false,qty:'\xd71',desc:'ABM realiza ajuste masivo de perfiles en \xdanico post-ticket, incluyendo rehire.',pain:'Rehire requiere modificar CPF manualmente rompiendo la trazabilidad.'},
+  {id:'A9', ph:2,n:'API\najuste',      full:'Procesamiento email y API (ajuste)',src:'Digibee (auto)',sys:['Digibee','\xdanico'],cel:true, qty:'\xd71',desc:'Digibee ejecuta la API de ajuste de perfiles en \xdanico.',pain:'Mismo pain que A3: sin procesamiento simult\xe1neo, lotes reducidos.'},
+  {id:'A10',ph:2,n:'Perfiles\nSSFF',   full:'Creaci\xf3n de perfiles en SSFF',src:'ABM · Macro · SSFF',sys:['SSFF'],cel:true, qty:'\xd714 tmpl',desc:'ABM importa 14 templates CSV en SSFF en orden. Cada template cubre un aspecto del perfil.',pain:'14 templates: cualquier error detiene el procesamiento. Comunicaci\xf3n manual.'},
+  {id:'A11',ph:3,n:'Firma\ndocs',      full:'Firma de contrato y documentos',src:'Candidato · A&P · ABM',sys:['\xdanico'],cel:false,qty:'\xd711 forms',desc:'El candidato firma el contrato y 11 formularios en \xdanico. Seguimiento presencial D1/D2.',pain:'Seguimiento presencial intensivo. Sin automatizaci\xf3n de recordatorios.'},
+  {id:'A12',ph:3,n:'Env\xedo\nfirma',     full:'Env\xedo de forms para firma',src:'\xdanico · SAP',sys:['\xdanico','SAP'],cel:true, qty:'\xd71',desc:'\xdanico env\xeda los formularios firmados v\xeda API a SAP. Activa el alta definitiva.',pain:'Errores de integraci\xf3n \xdanico\u2192SAP generan retrabajos. Sin alerta autom\xe1tica.'},
+  {id:'A13',ph:3,n:'Alta\nSAP',        full:'Alta en SAP y downstream',src:'ABM · SAP · Strada',sys:['SAP','Strada'],cel:true, qty:'\xd71',desc:'Alta definitiva en SAP. Activa eSocial, Santander, Ahgora y beneficios.',pain:'Check de r\xe9plicas manual en reports. Comunicaci\xf3n a stakeholders por email.'},
+  {id:'A14',ph:3,n:'Santander',        full:'Pedido cuenta bancaria Santander',src:'ABM · SAP · Santander',sys:['SAP','Santander'],cel:false,qty:'\xd71',desc:'SAP env\xeda la solicitud de apertura de cuenta bancaria a Santander.',pain:'Dependencia de comunicaci\xf3n manual. Sin integraci\xf3n autom\xe1tica.'},
+  {id:'A15',ph:3,n:'eSocial',          full:'Alta eSocial',src:'ABM · SAP · eSocial',sys:['SAP','eSocial'],cel:false,qty:'\xd71',desc:'Alta del empleado en eSocial desde SAP. Obligaci\xf3n regulatoria brasile\xf1a.',pain:'Chequeo manual en reports. Errores requieren correcci\xf3n y reenv\xedo.'},
+];
+
+var sel=null;
+var editingPain=false;
+
+function esc(s){
+  var d=document.createElement('div');
+  d.textContent=s;
+  return d.innerHTML;
+}
+
+function build(){
+  var bd=document.getElementById('sw-board');
+  if(!bd)return;
+  bd.innerHTML='';
+  PH.forEach(function(ph,pi){
+    var acts=A.filter(function(a){return a.ph===pi;});
+    var lane=document.createElement('div');
+    lane.className='sw-lane';
+    var hd=document.createElement('div');
+    hd.className='sw-hd';
+    hd.style.background=ph.bg;
+    hd.innerHTML='<div class="sw-hd-id" style="color:'+ph.c+'">'+ph.id+'</div><div class="sw-hd-nm" style="color:'+ph.c+'">'+ph.name+'</div>';
+    lane.appendChild(hd);
+    var body=document.createElement('div');
+    body.className='sw-body';
+    body.style.background=ph.bg+'55';
+    var line=document.createElement('div');
+    line.className='sw-line';
+    line.style.background=ph.line+'80';
+    body.appendChild(line);
+    acts.forEach(function(a){
+      var col=document.createElement('div');
+      col.className='sw-col';
+      var card=document.createElement('div');
+      card.className='sw-card'+(sel===a.id?' sw-sel':'');
+      card.style.borderColor=sel===a.id?ph.c:ph.line;
+      card.style.background=sel===a.id?ph.bg:'var(--color-background-primary)';
+      var idEl=document.createElement('div');
+      idEl.className='sw-cid';
+      idEl.style.color=ph.c;
+      idEl.textContent=a.id;
+      var nm=document.createElement('div');
+      nm.className='sw-cnm';
+      nm.style.color=sel===a.id?ph.c:'var(--color-text-primary)';
+      nm.style.whiteSpace='pre-line';
+      nm.textContent=a.n;
+      var dot=document.createElement('div');
+      dot.className='sw-dot';
+      dot.style.background=a.cel?'#1D9E75':'var(--color-border-secondary)';
+      card.appendChild(idEl);card.appendChild(nm);card.appendChild(dot);
+      card.onclick=function(){sel=sel===a.id?null:a.id;build();showDetail();};
+      col.appendChild(card);body.appendChild(col);
+    });
+    lane.appendChild(body);bd.appendChild(lane);
+  });
+}
+
+function showDetail(){
+  var dp=document.getElementById('sw-detail');
+  if(!dp)return;
+  if(!sel){dp.innerHTML='';return;}
+  var a=A.find(function(x){return x.id===sel;});
+  if(!a){dp.innerHTML='';return;}
+  var ph=PH[a.ph];
+  var sys=a.sys.map(function(s){return '<span class="sw-sys">'+esc(s)+'</span>';}).join('');
+  var isEditing=document.body.classList.contains('editing');
+  dp.innerHTML=
+    '<div style="animation:fi .18s ease"><div class="sw-det">'+
+    '<div class="sw-det-top">'+
+      '<div class="sw-det-acc" style="background:'+ph.c+'"></div>'+
+      '<div class="sw-det-body">'+
+        '<div class="sw-det-header">'+
+          '<div style="flex:1">'+
+            '<div class="sw-det-id">'+esc(a.id)+' · '+esc(ph.name)+'</div>'+
+            '<div class="sw-det-title">'+esc(a.full)+'</div>'+
+          '</div>'+
+          '<span class="sw-det-badge" style="color:'+ph.c+';background:'+ph.bg+'">'+ph.id+'</span>'+
+        '</div>'+
+        '<div class="sw-det-desc">'+esc(a.desc)+'</div>'+
+        '<div class="sw-sys-row">'+sys+'</div>'+
+        '<div class="sw-pain-wrap">'+
+          '<div class="sw-pain-label">'+
+            '<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 14H2L8 2Z" stroke="#BA7517" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 7V10" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="12.5" r=".75" fill="#BA7517"/></svg>'+
+            'Pain identificado'+
+          '</div>'+
+          '<div class="sw-pain-edit" id="pain-field-'+esc(a.id)+'" contenteditable="'+(isEditing?'true':'false')+'" data-actid="'+esc(a.id)+'">'+esc(a.pain)+'</div>'+
+          '<div class="sw-edit-hint">Editando — los cambios se guardan al cerrar o descargar</div>'+
+        '</div>'+
+        '<div class="sw-meta">'+
+          '<span>'+esc(a.src)+'</span>'+
+          '<span>'+esc(a.qty)+'</span>'+
+          '<span class="'+(a.cel?'sw-cel-ok':'')+'">'+
+            (a.cel?'Celonis conectado':'Sin Celonis')+
+          '</span>'+
+        '</div>'+
+      '</div>'+
+    '</div></div></div>';
+
+  // Sync pain edits back to data
+  var pf=document.getElementById('pain-field-'+a.id);
+  if(pf){
+    pf.oninput=function(){
+      var act=A.find(function(x){return x.id===this.getAttribute('data-actid');},this);
+      if(act) act.pain=this.textContent;
+    };
+  }
+}
+
+// Re-render pain field editability when edit mode toggles
+var origToggleEdit=window.toggleEdit;
+window.toggleEdit=function(btn){
+  origToggleEdit(btn);
+  var isEditing=document.body.classList.contains('editing');
+  var pf=document.querySelector('.sw-pain-edit');
+  if(pf) pf.contentEditable=isEditing?'true':'false';
+};
+
+build();
+showDetail();
+})();
+</script>
+
 </div>
 </div>
 
