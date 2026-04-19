@@ -6,6 +6,7 @@
 <title>AI Design Sprint · People</title>
 <style>
 
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 :root{--y:#FFE600;--b:#3483FA;--g:#00A650;--o:#FF7733;--dark:#1A1A2E;--gr:#EBEBEB;--tx:#333;--mu:#999;--bd:#E5E5E5;--wh:#FFF;--bg:#F5F5F5;--r:8px;--sh:0 2px 8px rgba(0,0,0,.08);--shl:0 8px 32px rgba(0,0,0,.12)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -170,107 +171,130 @@ body.editing .editable:focus{outline:2px solid var(--b)}
 
 
 
-/* ── PURE CSS TABS (radio trick) ── */
-.tab-radio { position:absolute; opacity:0; pointer-events:none; width:0; height:0; }
 
+
+/* ── TABS ── */
 .tabs-bar {
-  background:#fff; border-bottom:2px solid #EDECEB;
-  position:sticky; top:56px; z-index:90;
-  box-shadow:0 1px 4px rgba(0,0,0,.06);
-  display:flex; overflow-x:auto; padding:0 32px; gap:0;
-  scrollbar-width:none;
+  background: #fff;
+  border-bottom: 2px solid #EDECEB;
+  position: sticky;
+  top: 56px;
+  z-index: 90;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  display: flex;
+  overflow-x: auto;
+  padding: 0 32px;
+  scrollbar-width: none;
 }
-.tabs-bar::-webkit-scrollbar { display:none; }
+.tabs-bar::-webkit-scrollbar { display: none; }
 
-.tab-label {
-  font-size:13px; font-weight:500; color:#888780;
-  padding:13px 18px; cursor:pointer; white-space:nowrap;
-  border-bottom:3px solid transparent; margin-bottom:-2px;
-  transition:color .15s, border-color .15s; flex-shrink:0;
-  user-select:none; display:block;
+.tab-btn {
+  font-size: 13px;
+  font-weight: 500;
+  color: #888780;
+  padding: 13px 18px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  flex-shrink: 0;
+  margin-bottom: -2px;
+  transition: color .15s, border-color .15s;
 }
-.tab-label:hover { color:#2c2c2a; }
-
-.tab-pane {
-  visibility:hidden;
-  height:0;
-  overflow:hidden;
-  pointer-events:none;
+.tab-btn:hover { color: #2c2c2a; }
+.tab-btn.active {
+  color: #3483FA;
+  border-bottom-color: #3483FA;
+  font-weight: 600;
 }
 
-#tab-agenda:checked       ~ .tabs-bar .lbl-agenda,
-#tab-bienvenida:checked   ~ .tabs-bar .lbl-bienvenida,
-#tab-proceso:checked      ~ .tabs-bar .lbl-proceso,
-#tab-procesocompleto:checked ~ .tabs-bar .lbl-procesocompleto,
-#tab-pains:checked        ~ .tabs-bar .lbl-pains,
-#tab-sprint:checked       ~ .tabs-bar .lbl-sprint,
-#tab-casos:checked        ~ .tabs-bar .lbl-casos,
-#tab-mvp:checked          ~ .tabs-bar .lbl-mvp,
-#tab-cierre:checked       ~ .tabs-bar .lbl-cierre
-{ color:#3483FA; border-bottom-color:#3483FA; font-weight:600; }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
 
-#tab-agenda:checked       ~ .tabs-content .pane-agenda,
-#tab-bienvenida:checked   ~ .tabs-content .pane-bienvenida,
-#tab-proceso:checked      ~ .tabs-content .pane-proceso,
-#tab-procesocompleto:checked ~ .tabs-content .pane-procesocompleto,
-#tab-pains:checked        ~ .tabs-content .pane-pains,
-#tab-sprint:checked       ~ .tabs-content .pane-sprint,
-#tab-casos:checked        ~ .tabs-content .pane-casos,
-#tab-mvp:checked          ~ .tabs-content .pane-mvp,
-#tab-cierre:checked       ~ .tabs-content .pane-cierre
-{ display:block !important;
-  visibility:visible !important;
-  height:auto !important;
-  overflow:visible !important;
-  pointer-events:auto !important; }
+/* ── DETAILS (agenda rows) ── */
+details.ar { border-bottom: 1px solid #EDECEB; }
+details.ar > summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  padding: 0;
+}
+details.ar > summary::-webkit-details-marker { display: none; }
+details.ar > summary .ar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px; min-width: 26px;
+  border-radius: 50%;
+  background: #F0EFE9;
+  color: #888780;
+  border: 1px solid #EDECEB;
+  font-size: 20px;
+  line-height: 1;
+  margin-left: auto;
+  margin-top: 14px;
+  flex-shrink: 0;
+  transition: transform .2s, background .15s;
+  font-style: normal;
+}
+details.ar[open] > summary .ar-toggle {
+  transform: rotate(45deg);
+  background: #FFE600;
+  color: #2c2c2a;
+  border-color: #FFE600;
+}
+details.ar .ar-body { padding: 4px 0 14px 52px; }
 
-/* ── COLLAPSIBLE ROWS (<details>) ── */
-.ar { border-bottom:1px solid #EDECEB; }
-.ar summary {
-  display:flex; align-items:flex-start; gap:8px;
-  cursor:pointer; list-style:none; padding:0;
-}
-.ar summary::-webkit-details-marker { display:none; }
-.ar summary .ar-toggle {
-  display:flex; align-items:center; justify-content:center;
-  width:26px; height:26px; min-width:26px; border-radius:50%;
-  background:#F0EFE9; color:#888780; border:1px solid #EDECEB;
-  font-size:18px; line-height:1; margin-left:auto; margin-top:14px;
-  transition:transform .2s, background .15s; flex-shrink:0;
-}
-.ar[open] summary .ar-toggle {
-  transform:rotate(45deg); background:#FFE600; color:#2c2c2a; border-color:#FFE600;
-}
-.ar-body { padding:0 0 14px 52px; }
-
-/* ── COLLAPSIBLE BIENVENIDA BLOCKS (<details>) ── */
+/* ── DETAILS (collapsible blocks) ── */
 details.collapsible-block {
-  border:1px solid #EDECEB; border-radius:10px;
-  overflow:hidden; margin-bottom:12px;
+  border: 1px solid #EDECEB;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
 }
-details.collapsible-block summary {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 16px; cursor:pointer; background:#fff; list-style:none;
+details.collapsible-block > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  background: #fff;
+  list-style: none;
 }
-details.collapsible-block summary::-webkit-details-marker { display:none; }
-details.collapsible-block summary:hover { background:#FAFAFA; }
-.collapsible-title { font-size:13px; font-weight:600; color:#2c2c2a; }
-.collapsible-sub { font-size:11px; color:#888780; margin-top:2px; }
+details.collapsible-block > summary::-webkit-details-marker { display: none; }
+details.collapsible-block > summary:hover { background: #FAFAFA; }
+.collapsible-title { font-size: 13px; font-weight: 600; color: #2c2c2a; }
+.collapsible-sub { font-size: 11px; color: #888780; margin-top: 2px; }
 .collapsible-icon {
-  width:26px; height:26px; min-width:26px; border-radius:50%;
-  background:#F0EFE9; color:#888780; border:1px solid #EDECEB;
-  display:flex; align-items:center; justify-content:center;
-  font-size:18px; line-height:1;
-  transition:transform .2s, background .15s;
+  width: 26px; height: 26px; min-width: 26px;
+  border-radius: 50%;
+  background: #F0EFE9;
+  color: #888780;
+  border: 1px solid #EDECEB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+  font-style: normal;
+  transition: transform .2s, background .15s;
 }
 details.collapsible-block[open] .collapsible-icon {
-  transform:rotate(45deg); background:#FFE600; color:#2c2c2a; border-color:#FFE600;
+  transform: rotate(45deg);
+  background: #FFE600;
+  color: #2c2c2a;
+  border-color: #FFE600;
 }
-.collapsible-body { padding:0 16px 16px; }
+details.collapsible-block .collapsible-body { padding: 0 16px 16px; }
 
 </style>
 </head>
 <body>
+
 <nav>
   <div class="nav-brand">
     <div class="nav-logo">ML</div>
@@ -293,6 +317,7 @@ details.collapsible-block[open] .collapsible-icon {
     <button class="nbtn" onclick="window.print()">🖨️ Imprimir</button>
   </div>
 </nav>
+
 <div class="hero">
   <div class="hero-stripe"></div>
   <div class="hero-dots"></div>
@@ -313,28 +338,21 @@ details.collapsible-block[open] .collapsible-icon {
   </div>
 </div>
 
-<input type="radio" class="tab-radio" name="t" id="tab-agenda" checked>
-<input type="radio" class="tab-radio" name="t" id="tab-bienvenida">
-<input type="radio" class="tab-radio" name="t" id="tab-proceso">
-<input type="radio" class="tab-radio" name="t" id="tab-procesocompleto">
-<input type="radio" class="tab-radio" name="t" id="tab-pains">
-<input type="radio" class="tab-radio" name="t" id="tab-sprint">
-<input type="radio" class="tab-radio" name="t" id="tab-casos">
-<input type="radio" class="tab-radio" name="t" id="tab-mvp">
-<input type="radio" class="tab-radio" name="t" id="tab-cierre">
+
 <div class="tabs-bar">
-<label class="tab-label lbl-agenda" for="tab-agenda">📅 Agenda</label>
-<label class="tab-label lbl-bienvenida" for="tab-bienvenida">01 Bienvenida</label>
-<label class="tab-label lbl-proceso" for="tab-proceso">02 As-Is</label>
-<label class="tab-label lbl-procesocompleto" for="tab-procesocompleto">03 Flujo</label>
-<label class="tab-label lbl-pains" for="tab-pains">⚠️ Pains</label>
-<label class="tab-label lbl-sprint" for="tab-sprint">04 Sprint</label>
-<label class="tab-label lbl-casos" for="tab-casos">05 Casos</label>
-<label class="tab-label lbl-mvp" for="tab-mvp">06 MVP</label>
-<label class="tab-label lbl-cierre" for="tab-cierre">🏁 Cierre</label>
+<button class="tab-btn active" onclick="switchTab('agenda',this)">📅 Agenda</button>
+<button class="tab-btn" onclick="switchTab('bienvenida',this)">01 Bienvenida</button>
+<button class="tab-btn" onclick="switchTab('proceso',this)">02 As-Is</button>
+<button class="tab-btn" onclick="switchTab('proceso-completo',this)">03 Flujo</button>
+<button class="tab-btn" onclick="switchTab('pains',this)">⚠️ Pains</button>
+<button class="tab-btn" onclick="switchTab('sprint',this)">04 Sprint</button>
+<button class="tab-btn" onclick="switchTab('casos',this)">05 Casos</button>
+<button class="tab-btn" onclick="switchTab('mvp',this)">06 MVP</button>
+<button class="tab-btn" onclick="switchTab('cierre',this)">🏁 Cierre</button>
 </div>
-<div class="tabs-content main">
-<div class="tab-pane pane-agenda">
+
+<div class="main">
+<div class="tab-pane active" id="pane-agenda">
 <div class="ss" id="agenda">
   <div class="sh">
     <div class="sl"><div class="sn sny">📅</div><div><div class="st">Agenda de las dos jornadas</div><div class="sd">9:30 hs totales · Jornada 1: 6hs · Jornada 2: 3:30hs</div></div></div>
@@ -359,7 +377,8 @@ details.collapsible-block[open] .collapsible-icon {
   </div>
 </div>
 </div>
-<div class="tab-pane pane-bienvenida">
+</div>
+<div class="tab-pane" id="pane-bienvenida">
 <div class="ss" id="bienvenida">
   <div class="sh"><div class="sl"><div class="sn sny">01</div><div><div class="st">Bienvenida &amp; reglas del sprint</div><div class="sd">Alineamiento inicial · 40 min</div></div></div><div class="dtag">09:30 → 10:10</div></div>
 
@@ -396,7 +415,8 @@ details.collapsible-block[open] .collapsible-icon {
 
 </div>
 </div>
-<div class="tab-pane pane-proceso">
+</div>
+<div class="tab-pane" id="pane-proceso">
 <div class="ss" id="proceso">
   <div class="sh"><div class="sl"><div class="sn snb">02</div><div><div class="st">El proceso As-Is</div><div class="sd">Mapeo del proceso actual de admisiones en Brasil · foco Shipping</div></div></div><div class="dtag">10:10 → 10:50</div></div>
   <div class="g3" style="margin-bottom:20px">
@@ -416,7 +436,8 @@ details.collapsible-block[open] .collapsible-icon {
 </div>
 </div>
 </div>
-<div class="tab-pane pane-procesocompleto">
+</div>
+<div class="tab-pane" id="pane-proceso-completo">
 <div class="ss" id="proceso-completo">
   <div class="sh">
     <div class="sl"><div class="sn snb">03b</div><div>
@@ -638,7 +659,8 @@ details.collapsible-block[open] .collapsible-icon {
 </div>
 </div>
 </div>
-<div class="tab-pane pane-pains">
+</div>
+<div class="tab-pane" id="pane-pains">
 <div class="ss" id="pains">
   <div class="sh"><div class="sl"><div class="sn sno">03</div><div><div class="st">Pains identificados</div><div class="sd">Relevados previamente y para completar en esta jornada — <strong>editable + descargable al cierre</strong></div></div></div><div class="dtag">10:10 → 10:50</div></div>
   <div class="pl">
@@ -653,7 +675,8 @@ details.collapsible-block[open] .collapsible-icon {
 </div>
 </div>
 </div>
-<div class="tab-pane pane-sprint">
+</div>
+<div class="tab-pane" id="pane-sprint">
 <div class="ss" id="sprint">
   <div class="sh"><div class="sl"><div class="sn sng">04</div><div><div class="st">Design Sprint — Consigna</div><div class="sd">Hackatón para diseñar los casos de uso · Bloque 08</div></div></div><div class="dtag">16:00 → 16:30</div></div>
   <div class="g2">
@@ -686,7 +709,8 @@ details.collapsible-block[open] .collapsible-icon {
 </div>
 </div>
 </div>
-<div class="tab-pane pane-casos">
+</div>
+<div class="tab-pane" id="pane-casos">
 <div class="ss" id="casos">
   <div class="sh"><div class="sl"><div class="sn sny">05</div><div><div class="st">Potenciales casos de uso</div><div class="sd">Sugeridos en base al análisis del proceso. Son candidatos — se pueden modificar y se elegirá 1 durante el sprint.</div></div></div></div>
   <div class="g3" style="margin-bottom:20px">
@@ -703,7 +727,8 @@ details.collapsible-block[open] .collapsible-icon {
 </div>
 </div>
 </div>
-<div class="tab-pane pane-mvp">
+</div>
+<div class="tab-pane" id="pane-mvp">
 <div class="ss" id="mvp">
   <div class="sh"><div class="sl"><div class="sn snb">06</div><div><div class="st">Definición del MVP</div><div class="sd">Del caso ganador al blueprint · Bloques 07, 09 y Jornada 2</div></div></div></div>
   <div class="g2">
@@ -737,7 +762,8 @@ details.collapsible-block[open] .collapsible-icon {
 </div>
 </div>
 </div>
-<div class="tab-pane pane-cierre">
+</div>
+<div class="tab-pane" id="pane-cierre">
 <div class="ss" id="mvp">
   <div class="sh"><div class="sl"><div class="sn snb">06</div><div><div class="st">Definición del MVP</div><div class="sd">Del caso ganador al blueprint · Bloques 07, 09 y Jornada 2</div></div></div></div>
   <div class="g2">
@@ -774,56 +800,54 @@ details.collapsible-block[open] .collapsible-icon {
 </div>
 </div>
 </div>
-<script>function toggleEdit(btn){
-  var on=document.body.classList.toggle('editing');
-  btn.classList.toggle('on',on);
-  btn.textContent=on?'✅ Editando':'✏️ Editar';
-  var eds=document.querySelectorAll('.editable');
-  for(var i=0;i<eds.length;i++) eds[i].contentEditable=on?'true':'false';
-}</script>
+</div>
 
 <script>
-// Fallback JS para tabs — por si el CSS puro no funciona en el contexto
+
+function switchTab(id, btn) {
+  // hide all panes
+  var panes = document.getElementsByClassName('tab-pane');
+  for (var i = 0; i < panes.length; i++) {
+    panes[i].style.display = 'none';
+  }
+  // deactivate all buttons
+  var btns = document.getElementsByClassName('tab-btn');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].classList.remove('active');
+    btns[i].style.color = '';
+    btns[i].style.borderBottomColor = 'transparent';
+    btns[i].style.fontWeight = '';
+  }
+  // show target pane
+  var pane = document.getElementById('pane-' + id);
+  if (pane) pane.style.display = 'block';
+  // activate button
+  if (btn) {
+    btn.classList.add('active');
+    btn.style.color = '#3483FA';
+    btn.style.borderBottomColor = '#3483FA';
+    btn.style.fontWeight = '600';
+  }
+  window.scrollTo(0, 0);
+}
+
+function toggleEdit(btn) {
+  var on = document.body.classList.toggle('editing');
+  btn.textContent = on ? '✅ Editando' : '✏️ Editar';
+  var eds = document.getElementsByClassName('editable');
+  for (var i = 0; i < eds.length; i++) {
+    eds[i].contentEditable = on ? 'true' : 'false';
+  }
+}
+
+// Init: show first pane, hide rest
 (function() {
-  var labels = document.querySelectorAll('.tab-label');
-  var panes  = document.querySelectorAll('.tab-pane');
-  var radios = document.querySelectorAll('.tab-radio');
-
-  if (!labels.length || !panes.length) return;
-
-  function activateTab(idx) {
-    for (var i = 0; i < panes.length; i++) {
-      panes[i].style.cssText = i === idx
-        ? 'display:block !important;visibility:visible !important;height:auto !important;overflow:visible !important;'
-        : 'display:none !important;visibility:hidden !important;height:0 !important;overflow:hidden !important;';
-    }
-    for (var i = 0; i < labels.length; i++) {
-      if (i === idx) {
-        labels[i].style.color = '#3483FA';
-        labels[i].style.borderBottom = '3px solid #3483FA';
-        labels[i].style.fontWeight = '600';
-      } else {
-        labels[i].style.color = '';
-        labels[i].style.borderBottom = '3px solid transparent';
-        labels[i].style.fontWeight = '';
-      }
-    }
-    if (radios[idx]) radios[idx].checked = true;
+  var panes = document.getElementsByClassName('tab-pane');
+  for (var i = 0; i < panes.length; i++) {
+    panes[i].style.display = i === 0 ? 'block' : 'none';
   }
-
-  // Attach click to labels
-  for (var i = 0; i < labels.length; i++) {
-    (function(idx) {
-      labels[idx].addEventListener('click', function(e) {
-        activateTab(idx);
-      });
-    })(i);
-  }
-
-  // Activate first tab on load
-  activateTab(0);
 })();
-</script>
 
+</script>
 </body>
 </html>
