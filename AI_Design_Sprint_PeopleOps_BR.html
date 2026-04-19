@@ -251,9 +251,120 @@ details.collapsible-block[open] .collapsible-icon {
 }
 details.collapsible-block .collapsible-body { padding: 0 16px 16px; }
 
+
+/* ── EDIT MODE ── */
+body.editing [contenteditable="true"]:hover {
+  background: rgba(52,131,250,.05);
+}
+body.editing [contenteditable="true"]:focus {
+  outline: 2px solid #3483FA !important;
+  background: rgba(52,131,250,.04);
+}
+
+
+/* ── LOGIN OVERLAY ── */
+#login-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0f0f1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+#login-overlay.hidden { display: none; }
+
+.login-box {
+  background: #1a1a2e;
+  border: 1px solid rgba(255,230,0,.2);
+  border-radius: 16px;
+  padding: 48px 40px;
+  width: 360px;
+  text-align: center;
+}
+.login-logo {
+  background: #FFE600;
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 16px; color: #2c2c2a;
+  margin: 0 auto 20px;
+}
+.login-title {
+  font-size: 20px; font-weight: 700; color: #fff;
+  margin-bottom: 4px;
+}
+.login-sub {
+  font-size: 13px; color: rgba(255,255,255,.4);
+  margin-bottom: 32px;
+}
+.login-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px;
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  font-size: 15px;
+  font-family: inherit;
+  margin-bottom: 12px;
+  outline: none;
+  letter-spacing: 2px;
+  transition: border-color .2s;
+}
+.login-input:focus { border-color: #FFE600; }
+.login-input::placeholder { letter-spacing: 0; color: rgba(255,255,255,.3); }
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #FFE600;
+  color: #2c2c2a;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.login-btn:hover { opacity: .9; }
+.login-error {
+  font-size: 12px;
+  color: #ff6b6b;
+  margin-top: 10px;
+  min-height: 18px;
+}
+.login-hint {
+  font-size: 11px;
+  color: rgba(255,255,255,.2);
+  margin-top: 24px;
+}
+
 </style>
 </head>
 <body>
+
+<div id="login-overlay">
+  <div class="login-box">
+    <div class="login-logo">ML</div>
+    <div class="login-title">AI Design Sprint · People</div>
+    <div class="login-sub">Ingresá la contraseña para acceder</div>
+    <input
+      class="login-input"
+      type="password"
+      id="login-input"
+      placeholder="Contraseña"
+      autocomplete="off"
+      onkeydown="if(event.key==='Enter') checkLogin()"
+    >
+    <button class="login-btn" onclick="checkLogin()">Ingresar →</button>
+    <div class="login-error" id="login-error"></div>
+    <div class="login-hint">PeopleOps Brasil · ABR 2026</div>
+  </div>
+</div>
+
 <div class="hero">
   <div class="hero-stripe"></div>
   <div class="hero-dots"></div>
@@ -294,7 +405,8 @@ details.collapsible-block .collapsible-body { padding: 0 16px 16px; }
   </div>
   <div style="display:flex;align-items:center;gap:8px;padding:0 16px;flex-shrink:0">
     <div style="font-size:12px;color:#888780;background:#F0EFE9;padding:4px 12px;border-radius:99px;white-space:nowrap">20–21 ABR 2026</div>
-    <button onclick="toggleEdit(this)" style="font-size:12px;padding:6px 12px;border:1px solid #EDECEB;border-radius:6px;background:#fff;cursor:pointer;font-family:inherit">✏️ Editar</button>
+    <button id="edit-btn" onclick="toggleEdit(this)" style="font-size:12px;padding:6px 12px;border:1px solid #EDECEB;border-radius:6px;background:#fff;cursor:pointer;font-family:inherit">✏️ Editar</button>
+    <button id="save-btn" onclick="saveHTML()" style="font-size:12px;padding:6px 14px;border:none;border-radius:6px;background:#3483FA;color:#fff;cursor:pointer;font-family:inherit;font-weight:600">⬇️ Guardar</button>
     <button onclick="window.print()" style="font-size:12px;padding:6px 12px;border:1px solid #EDECEB;border-radius:6px;background:#fff;cursor:pointer;font-family:inherit">🖨️</button>
   </div>
 </nav>
@@ -759,14 +871,143 @@ details.collapsible-block .collapsible-body { padding: 0 16px 16px; }
 </div>
 
 <script>
+
+var editMode = false;
+
 function toggleEdit(btn) {
-  var on = document.body.classList.toggle('editing');
-  btn.textContent = on ? '✅ Editando' : '✏️ Editar';
-  var eds = document.getElementsByClassName('editable');
-  for (var i = 0; i < eds.length; i++) {
-    eds[i].contentEditable = on ? 'true' : 'false';
+  editMode = !editMode;
+  document.body.classList.toggle('editing', editMode);
+  btn.innerHTML = editMode ? '✅ Guardando...' : '✏️ Editar';
+  btn.style.background = editMode ? '#FFE600' : '';
+  btn.style.fontWeight = editMode ? '700' : '';
+
+  // Make ALL text elements in sections editable
+  var selectors = [
+    '.ss h1, .ss h2, .ss h3',
+    '.st, .sd, .mu, .rt, .rd, .ft, .cb, .ctt, .clb',
+    '.act, .ares, .aout li, .apend',
+    '.pt, .pd, .pim',
+    '.ctt2, .cb2, .cc p, .cc div',
+    '.cloi, .clt',
+    'td, th',
+    '.fi .ft, .rc .rd, .rc .rt',
+    'p, li',
+    '[class*="editable"]',
+    '.collapsible-title, .collapsible-sub',
+    '.dtag, .atag, .at',
+    '.adj, .adt',
+    '.hero-eyebrow, .hero-sub',
+    'h1[id="hero-title"]'
+  ].join(', ');
+
+  var els = document.querySelectorAll(selectors);
+  for (var i = 0; i < els.length; i++) {
+    els[i].contentEditable = editMode ? 'true' : 'false';
+    if (editMode) {
+      els[i].style.outline = '1.5px dashed #3483FA';
+      els[i].style.borderRadius = '3px';
+      els[i].style.minHeight = '1em';
+    } else {
+      els[i].style.outline = '';
+      els[i].style.borderRadius = '';
+    }
+  }
+
+  if (!editMode) {
+    btn.innerHTML = '✏️ Editar';
+    btn.style.background = '';
+    btn.style.fontWeight = '';
   }
 }
+
+function saveHTML() {
+  // Turn off edit mode first
+  var editBtn = document.getElementById('edit-btn');
+  if (editMode && editBtn) {
+    // Remove editing indicators before saving
+    var els = document.querySelectorAll('[contenteditable="true"]');
+    for (var i = 0; i < els.length; i++) {
+      els[i].contentEditable = 'false';
+      els[i].style.outline = '';
+      els[i].style.borderRadius = '';
+    }
+    document.body.classList.remove('editing');
+    editMode = false;
+    editBtn.innerHTML = '✏️ Editar';
+    editBtn.style.background = '';
+    editBtn.style.fontWeight = '';
+  }
+
+  // Get full HTML and trigger download
+  var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  var blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'AI_Design_Sprint_People_' + new Date().toISOString().slice(0,10) + '.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  // Show feedback
+  var saveBtn = document.getElementById('save-btn');
+  if (saveBtn) {
+    var orig = saveBtn.innerHTML;
+    saveBtn.innerHTML = '✓ Descargado';
+    saveBtn.style.background = '#00A650';
+    saveBtn.style.color = '#fff';
+    setTimeout(function() {
+      saveBtn.innerHTML = orig;
+      saveBtn.style.background = '';
+      saveBtn.style.color = '';
+    }, 2000);
+  }
+}
+
+
+// ── ACCESS CONTROL ──
+(function() {
+  // Password stored as base64 — change this to update the password
+  // Current password: sprint2026
+  var _p = "c3ByaW50MjAyNg==";
+
+  // Check if already authenticated in this session
+  try {
+    if (sessionStorage.getItem('sprint_auth') === _p) {
+      document.getElementById('login-overlay').classList.add('hidden');
+      return;
+    }
+  } catch(e) {}
+
+  // Focus input on load
+  window.addEventListener('load', function() {
+    var inp = document.getElementById('login-input');
+    if (inp) inp.focus();
+  });
+})();
+
+function checkLogin() {
+  var _p = "c3ByaW50MjAyNg==";
+  var input = document.getElementById('login-input').value;
+  var encoded = btoa(input);
+  if (encoded === _p) {
+    try { sessionStorage.setItem('sprint_auth', _p); } catch(e) {}
+    document.getElementById('login-overlay').classList.add('hidden');
+    document.getElementById('login-error').textContent = '';
+  } else {
+    document.getElementById('login-error').textContent = 'Contraseña incorrecta. Intentá de nuevo.';
+    document.getElementById('login-input').value = '';
+    document.getElementById('login-input').focus();
+    // Shake animation
+    var box = document.querySelector('.login-box');
+    box.style.transform = 'translateX(-8px)';
+    setTimeout(function(){ box.style.transform = 'translateX(8px)'; }, 80);
+    setTimeout(function(){ box.style.transform = 'translateX(-4px)'; }, 160);
+    setTimeout(function(){ box.style.transform = 'translateX(0)'; }, 240);
+  }
+}
+
 </script>
 </body>
 </html>
